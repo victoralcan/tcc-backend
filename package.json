@@ -7,7 +7,8 @@
     "build": "tsc",
     "dev:server": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/server.ts",
     "start": "node dist/server.js",
-    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
+    "setup": "yarn typeorm migration:run"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -16,7 +17,8 @@
     "express": "^4.17.1",
     "pg": "^8.6.0",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.2.32"
+    "typeorm": "^0.2.32",
+    "typeorm-naming-strategies": "^2.0.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.10",

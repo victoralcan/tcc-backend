@@ -5,12 +5,12 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export default class CreateTradeRecords1627857761651
+export default class CreateSubCategories1632260869568
   implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'trade_records',
+        name: 'sub_categories',
         columns: [
           {
             name: 'id',
@@ -20,16 +20,24 @@ export default class CreateTradeRecords1627857761651
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'trade_id',
-            type: 'uuid',
+            name: 'name',
+            type: 'varchar',
+            isNullable: false,
           },
           {
-            name: 'pokemon_id',
-            type: 'uuid',
+            name: 'description',
+            type: 'varchar',
+            isNullable: false,
           },
           {
-            name: 'left',
+            name: 'category_id',
+            type: 'uuid',
+            isNullable: false,
+          },
+          {
+            name: 'active',
             type: 'boolean',
+            isNullable: false,
           },
           {
             name: 'created_at',
@@ -46,24 +54,12 @@ export default class CreateTradeRecords1627857761651
     );
 
     await queryRunner.createForeignKey(
-      'trade_records',
+      'sub_categories',
       new TableForeignKey({
-        name: 'RelatedTrade',
-        columnNames: ['trade_id'],
+        name: 'SubCategoriesCategory',
+        columnNames: ['category_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'trades',
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE',
-      }),
-    );
-
-    await queryRunner.createForeignKey(
-      'trade_records',
-      new TableForeignKey({
-        name: 'TradedPokemon',
-        columnNames: ['pokemon_id'],
-        referencedColumnNames: ['id'],
-        referencedTableName: 'pokemons',
+        referencedTableName: 'categories',
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       }),
@@ -71,10 +67,8 @@ export default class CreateTradeRecords1627857761651
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('trade_records', 'TradedPokemon');
+    await queryRunner.dropForeignKey('sub_categories', 'SubCategoriesCategory');
 
-    await queryRunner.dropForeignKey('trade_records', 'RelatedTrade');
-
-    await queryRunner.dropTable('trade_records');
+    await queryRunner.dropTable('sub_categories');
   }
 }

@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export default class CreatePokemons1627857606259 implements MigrationInterface {
+export default class CreateRoles1632259849124 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'pokemons',
+        name: 'roles',
         columns: [
           {
             name: 'id',
@@ -14,17 +14,14 @@ export default class CreatePokemons1627857606259 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'api_id',
-            type: 'integer',
-            isUnique: true,
-          },
-          {
             name: 'name',
             type: 'varchar',
+            isNullable: false,
           },
           {
-            name: 'base_experience',
-            type: 'integer',
+            name: 'active',
+            type: 'boolean',
+            isNullable: false,
           },
           {
             name: 'created_at',
@@ -42,6 +39,6 @@ export default class CreatePokemons1627857606259 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('pokemons');
+    await queryRunner.dropTable('roles');
   }
 }

@@ -45,7 +45,8 @@
       {
         "ts": "never"
       }
-    ]
+    ],
+    "@typescript-eslint/no-empty-function": "off"
   },
   "settings": {
     "import/resolver": {
