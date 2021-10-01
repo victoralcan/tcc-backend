@@ -5,11 +5,12 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export default class CreateOrders1632261094926 implements MigrationInterface {
+export default class CreateOrderItem1633052501324
+  implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'orders',
+        name: 'order_item',
         columns: [
           {
             name: 'id',
@@ -19,23 +20,18 @@ export default class CreateOrders1632261094926 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'bill_id',
+            name: 'order_id',
             type: 'uuid',
             isNullable: false,
           },
           {
-            name: 'user_id',
+            name: 'item_id',
             type: 'uuid',
             isNullable: false,
           },
           {
-            name: 'ready',
-            type: 'boolean',
-            isNullable: false,
-          },
-          {
-            name: 'order_date',
-            type: 'date',
+            name: 'quantity',
+            type: 'integer',
             isNullable: false,
           },
           {
@@ -58,24 +54,24 @@ export default class CreateOrders1632261094926 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'orders',
+      'order_item',
       new TableForeignKey({
-        name: 'OrderBill',
-        columnNames: ['bill_id'],
+        name: 'OrderItemOrder',
+        columnNames: ['order_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'bills',
+        referencedTableName: 'orders',
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       }),
     );
 
     await queryRunner.createForeignKey(
-      'orders',
+      'order_item',
       new TableForeignKey({
-        name: 'OrderUser',
-        columnNames: ['user_id'],
+        name: 'OrderItemItem',
+        columnNames: ['item_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'users',
+        referencedTableName: 'items',
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       }),
@@ -83,9 +79,9 @@ export default class CreateOrders1632261094926 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('orders', 'OrderBill');
-    await queryRunner.dropForeignKey('orders', 'OrderUser');
+    await queryRunner.dropForeignKey('order_item', 'OrderItemOrder');
+    await queryRunner.dropForeignKey('order_item', 'OrderItemItem');
 
-    await queryRunner.dropTable('orders');
+    await queryRunner.dropTable('order_item');
   }
 }
