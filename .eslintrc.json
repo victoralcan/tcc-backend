@@ -46,7 +46,11 @@
         "ts": "never"
       }
     ],
-    "@typescript-eslint/no-empty-function": "off"
+    "@typescript-eslint/no-empty-function": "off",
+    "no-return-await": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "no-console": "off"
   },
   "settings": {
     "import/resolver": {
