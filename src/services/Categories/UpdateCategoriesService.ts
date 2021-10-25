@@ -6,12 +6,13 @@ interface IRequestDTO {
   id: string;
   name: string;
   description: string;
-
-
+  active: boolean;
 }
 
 class UpdateCategoriesService {
-  public async execute(toUpdateCategory: IRequestDTO): Promise<Category | undefined> {
+  public async execute(
+    toUpdateCategory: IRequestDTO,
+  ): Promise<Category | undefined> {
     const categoriesRepository = getCustomRepository(CategoriesRepository);
     const updateResult = await categoriesRepository.update(
       {

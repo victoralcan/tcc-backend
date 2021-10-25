@@ -7,11 +7,13 @@ interface IRequestDTO {
   order_id: string;
   item_id: string;
   quantity: number;
-
+  active: boolean;
 }
 
 class UpdateOrderItemService {
-  public async execute(toUpdateOrderItem: IRequestDTO): Promise<OrderItem | undefined> {
+  public async execute(
+    toUpdateOrderItem: IRequestDTO,
+  ): Promise<OrderItem | undefined> {
     const orderItemRepository = getCustomRepository(OrderItemRepository);
     const updateResult = await orderItemRepository.update(
       {

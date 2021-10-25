@@ -7,12 +7,16 @@ interface IRequestDTO {
   name: string;
   description: string;
   category_id: string;
-
+  active: boolean;
 }
 
 class UpdateSubCategoriesService {
-  public async execute(toUpdateSubCategory: IRequestDTO): Promise<SubCategory | undefined> {
-    const subCategoriesRepository = getCustomRepository(SubCategoriesRepository);
+  public async execute(
+    toUpdateSubCategory: IRequestDTO,
+  ): Promise<SubCategory | undefined> {
+    const subCategoriesRepository = getCustomRepository(
+      SubCategoriesRepository,
+    );
     const updateResult = await subCategoriesRepository.update(
       {
         id: toUpdateSubCategory.id,

@@ -31,8 +31,8 @@ CategoriesRoutes.get('/:id', async (request, response) => {
     where: { id, active: true },
   });
 
-  if (!categories ) {
-    return response.status(404).json({ error: ' Category does not exists' });
+  if (!categories) {
+    return response.status(404).json({ error: 'Category does not exists' });
   }
   return response.json(categories);
 });
@@ -42,7 +42,7 @@ CategoriesRoutes.post('/', async (request, response) => {
     return response.status(400).json({ error: 'Validation fails' });
   }
 
-  const { name, description } = request.body;
+  const { name, description, active } = request.body;
 
   const createCategorie = new CreateCategoriesService();
 
@@ -52,7 +52,7 @@ CategoriesRoutes.post('/', async (request, response) => {
     newCategorie = await createCategorie.execute({
       name,
       description,
-
+      active,
     });
   } catch (e) {
     console.log(e);
@@ -72,21 +72,13 @@ CategoriesRoutes.put('/', async (request, response) => {
     return response.status(400).json({ error: 'Validation fails' });
   }
 
-  const {
-    id,
-    name,
-    description,
-
-
-
-  } = request.body;
+  const { id, name, description, active } = request.body;
 
   const categoryToUpdate = {
-
     id,
     name,
     description,
-
+    active,
   };
 
   if (!validate(id)) {

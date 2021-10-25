@@ -31,7 +31,7 @@ orderItemRouter.get('/:id', async (request, response) => {
     where: { id, active: true },
   });
 
-  if (!orderItem ) {
+  if (!orderItem) {
     return response.status(404).json({ error: 'Order item does not exists' });
   }
   return response.json(orderItem);
@@ -42,7 +42,7 @@ orderItemRouter.post('/', async (request, response) => {
     return response.status(400).json({ error: 'Validation fails' });
   }
 
-  const { order_id, item_id, quantity } = request.body;
+  const { order_id, item_id, quantity, active } = request.body;
 
   const createOrderItem = new CreateOrderItemService();
 
@@ -53,7 +53,7 @@ orderItemRouter.post('/', async (request, response) => {
       order_id,
       item_id,
       quantity,
-
+      active,
     });
   } catch (e) {
     console.log(e);
@@ -73,21 +73,14 @@ orderItemRouter.put('/', async (request, response) => {
     return response.status(400).json({ error: 'Validation fails' });
   }
 
-  const {
-    id,
-    order_id,
-    item_id,
-    quantity,
-
-  } = request.body;
+  const { id, order_id, item_id, quantity, active } = request.body;
 
   const orderItemToUpdate = {
-
     id,
     order_id,
     item_id,
     quantity,
-
+    active,
   };
 
   if (!validate(id)) {

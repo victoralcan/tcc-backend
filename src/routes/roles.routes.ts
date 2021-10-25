@@ -31,8 +31,8 @@ RolesRoutes.get('/:id', async (request, response) => {
     where: { id, active: true },
   });
 
-  if (!roles ) {
-    return response.status(404).json({ error: ' Role does not exists' });
+  if (!roles) {
+    return response.status(404).json({ error: 'Role does not exists' });
   }
   return response.json(roles);
 });
@@ -42,7 +42,7 @@ RolesRoutes.post('/', async (request, response) => {
     return response.status(400).json({ error: 'Validation fails' });
   }
 
-  const { name } = request.body;
+  const { name, active } = request.body;
 
   const createRole = new CreateRolesService();
 
@@ -51,7 +51,7 @@ RolesRoutes.post('/', async (request, response) => {
   try {
     newRole = await createRole.execute({
       name,
-
+      active,
     });
   } catch (e) {
     console.log(e);
@@ -71,18 +71,12 @@ RolesRoutes.put('/', async (request, response) => {
     return response.status(400).json({ error: 'Validation fails' });
   }
 
-  const {
-    id,
-    name,
-
-
-  } = request.body;
+  const { id, name, active } = request.body;
 
   const roleToUpdate = {
-
     id,
     name,
-
+    active,
   };
 
   if (!validate(id)) {

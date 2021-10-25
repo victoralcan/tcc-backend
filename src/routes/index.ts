@@ -6,7 +6,7 @@ import usersRouter from './users.routes';
 import tablesRouter from './tables.routes';
 import billsRouter from './bills.routes';
 import ordersRouter from './orders.routes';
-import orderItemRouter from './orders.routes';
+import orderItemRouter from './orderItem.routes';
 import itemRouter from './item.routes';
 import subCategoriesRoutes from './subCategories.routes';
 import categoriesRoutes from './categories.routes';
@@ -33,7 +33,7 @@ routes.use('/orderitem', orderItemRouter);
 
 routes.use('/items', itemRouter);
 
-routes.use('/subcategories', subCategoriesRoutes)
+routes.use('/subcategories', subCategoriesRoutes);
 
 routes.use('/categories', categoriesRoutes);
 

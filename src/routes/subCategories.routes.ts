@@ -3,15 +3,15 @@ import { getCustomRepository } from 'typeorm';
 import { validate } from 'uuid';
 import { cadastroSchema, updateSchema } from '../schemas/subCategoriesSchema';
 
-import SubCategoriesRepository from '../repositories/SubCategoriesRepository';
-import CreateSubCategoriesService from '../services/SubCategories/CreateSubCategoriesService';
-import DeleteSubCategoriesService from '../services/SubCategories/DeleteSubCategoriesService';
-import UpdateSubCategoriesService from '../services/SubCategories/UpdateSubCategoriesService';
+import SubCategorysRepository from '../repositories/SubCategoriesRepository';
+import CreateSubCategoriesService from '../services/SubCategory/CreateSubCategoriesService';
+import DeleteSubCategoriesService from '../services/SubCategory/DeleteSubCategoriesService';
+import UpdateSubCategoriesService from '../services/SubCategory/UpdateSubCategoriesService';
 
-const SubCategoriesRoutes = Router();
+const SubCategorysRoutes = Router();
 
-SubCategoriesRoutes.get('/', async (request, response) => {
-  const subCategoriesRepository = getCustomRepository(SubCategoriesRepository);
+SubCategorysRoutes.get('/', async (request, response) => {
+  const subCategoriesRepository = getCustomRepository(SubCategorysRepository);
   const subCategories = await subCategoriesRepository.find({
     where: {
       active: true,
@@ -21,94 +21,89 @@ SubCategoriesRoutes.get('/', async (request, response) => {
   return response.json(subCategories);
 });
 
-SubCategoriesRoutes.get('/:id', async (request, response) => {
+SubCategorysRoutes.get('/:id', async (request, response) => {
   const { id } = request.params;
   if (!validate(id)) {
     return response.status(400).json({ error: 'Invalid Id' });
   }
-  const subCategoriesRepository = getCustomRepository(SubCategoriesRepository);
+  const subCategoriesRepository = getCustomRepository(SubCategorysRepository);
   const subCategories = await subCategoriesRepository.findOne({
     where: { id, active: true },
   });
 
-  if (!subCategories ) {
-    return response.status(404).json({ error: ' Sub-Category does not exists' });
+  if (!subCategories) {
+    return response
+      .status(404)
+      .json({ error: ' Sub-Category does not exists' });
   }
   return response.json(subCategories);
 });
 
-SubCategoriesRoutes.post('/', async (request, response) => {
+SubCategorysRoutes.post('/', async (request, response) => {
   if (!(await cadastroSchema.isValid(request.body))) {
     return response.status(400).json({ error: 'Validation fails' });
   }
 
-  const { name, description, category_id } = request.body;
+  const { name, description, category_id, active } = request.body;
 
-  const createSubCategorie = new CreateSubCategoriesService();
+  const createSubCategory = new CreateSubCategoriesService();
 
-  let newSubCategorie;
+  let newSubCategory;
 
   try {
-    newSubCategorie = await createSubCategorie.execute({
+    newSubCategory = await createSubCategory.execute({
       name,
       description,
       category_id,
-
-
+      active,
     });
   } catch (e) {
     console.log(e);
     throw new Error();
   }
 
-  if (!newSubCategorie) {
+  if (!newSubCategory) {
     return response
       .status(500)
       .json({ error: 'An error ocurred. Please try again!' });
   }
-  return response.json(newSubCategorie);
+  return response.json(newSubCategory);
 });
 
-SubCategoriesRoutes.put('/', async (request, response) => {
+SubCategorysRoutes.put('/', async (request, response) => {
   if (!(await updateSchema.isValid(request.body))) {
     return response.status(400).json({ error: 'Validation fails' });
   }
 
-  const {
-    id,
-    name,
-    description,
-    category_id,
-
-
-  } = request.body;
+  const { id, name, description, category_id, active } = request.body;
 
   const subCategoryToUpdate = {
-
     id,
     name,
     description,
     category_id,
-
+    active,
   };
 
   if (!validate(id)) {
     return response.status(400).json({ error: 'Invalid Id' });
   }
 
-  const updateSubCategories = new UpdateSubCategoriesService();
-  const updatedSubCategories = await updateSubCategories.execute(subCategoryToUpdate);
+  const updateSubCategorys = new UpdateSubCategoriesService();
+  const updatedSubCategorys = await updateSubCategorys.execute(
+    subCategoryToUpdate,
+  );
 
-  if (!updatedSubCategories) {
+  if (!updatedSubCategorys) {
     return response
       .status(500)
       .json({ error: 'Something went wrong. Please try again' });
   }
 
-  return response.json(updatedSubCategories);
+  return response.json(updatedSubCategorys);
 });
 
-SubCategoriesRoutes.delete('/:id', async (request, response) => {
+SubCategorysRoutes.delete('/:id', async (request, response) => {
   const { id } = request.params;
   if (!validate(id)) {
     return response.status(400).json({ error: 'Invalid Id' });
@@ -119,4 +114,4 @@ SubCategoriesRoutes.delete('/:id', async (request, response) => {
   return response.status(204).send();
 });
 
-export default SubCategoriesRoutes;
+export default SubCategorysRoutes;

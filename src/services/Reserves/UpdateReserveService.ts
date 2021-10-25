@@ -9,10 +9,13 @@ interface IRequestDTO {
   name: string;
   contact: string;
   amount: number;
+  active: boolean;
 }
 
 class UpdateReserveService {
-  public async execute(toUpdateReserve: IRequestDTO): Promise<Reserve | undefined> {
+  public async execute(
+    toUpdateReserve: IRequestDTO,
+  ): Promise<Reserve | undefined> {
     const reservesRepository = getCustomRepository(ReservesRepository);
     const updateResult = await reservesRepository.update(
       {

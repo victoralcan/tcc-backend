@@ -6,16 +6,18 @@ interface IRequestDTO {
   name: string;
   description: string;
   category_id: string;
-
-  
+  active: boolean;
 }
 
 class CreateSubCategoriesService {
-  public async execute(subCategories: IRequestDTO): Promise<SubCategories | undefined> {
-    const subCategoriesRepository = getCustomRepository(SubCategoriesRepository);
+  public async execute(
+    subCategories: IRequestDTO,
+  ): Promise<SubCategories | undefined> {
+    const subCategoriesRepository = getCustomRepository(
+      SubCategoriesRepository,
+    );
 
     try {
-        
       const newSubCategories = subCategoriesRepository.create(subCategories);
       await subCategoriesRepository.save(newSubCategories);
       return newSubCategories;

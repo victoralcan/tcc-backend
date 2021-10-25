@@ -6,8 +6,7 @@ interface IRequestDTO {
   order_id: string;
   item_id: string;
   quantity: number;
-
-  
+  active: boolean;
 }
 
 class CreateOrdeItemService {
@@ -15,7 +14,6 @@ class CreateOrdeItemService {
     const orderItemRepository = getCustomRepository(OrderItemRepository);
 
     try {
-        
       const newOrderItem = orderItemRepository.create(orderItem);
       await orderItemRepository.save(newOrderItem);
       return newOrderItem;

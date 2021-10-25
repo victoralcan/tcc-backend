@@ -8,7 +8,7 @@ interface IRequestDTO {
   description: string;
   sub_category_id: string;
   value: number;
-
+  active: boolean;
 }
 
 class UpdateItemService {

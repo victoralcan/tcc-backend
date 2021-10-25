@@ -31,7 +31,7 @@ ItemRouter.get('/:id', async (request, response) => {
     where: { id, active: true },
   });
 
-  if (!item ) {
+  if (!item) {
     return response.status(404).json({ error: ' Item does not exists' });
   }
   return response.json(item);
@@ -42,7 +42,7 @@ ItemRouter.post('/', async (request, response) => {
     return response.status(400).json({ error: 'Validation fails' });
   }
 
-  const { name, description, sub_category_id, value } = request.body;
+  const { name, description, sub_category_id, value, active } = request.body;
 
   const createItem = new CreateItemService();
 
@@ -54,7 +54,7 @@ ItemRouter.post('/', async (request, response) => {
       description,
       sub_category_id,
       value,
-
+      active,
     });
   } catch (e) {
     console.log(e);
@@ -80,17 +80,16 @@ ItemRouter.put('/', async (request, response) => {
     description,
     sub_category_id,
     value,
-
+    active,
   } = request.body;
 
   const itemToUpdate = {
-
     id,
     name,
     description,
     sub_category_id,
     value,
-
+    active,
   };
 
   if (!validate(id)) {

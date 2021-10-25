@@ -8,11 +8,14 @@ interface IRequestDTO {
   user_id: string;
   start_date: string;
   ready: boolean;
-//   order_date: string; //ENTENDER OQUE TA ROLANDO AQUI, PQ QUANDO TIRA O COMENTARIO DA BOSTA 
+  order_date: string;
+  active: boolean;
 }
 
 class UpdateOrdersService {
-  public async execute(toUpdateOrders: IRequestDTO): Promise<Order | undefined> {
+  public async execute(
+    toUpdateOrders: IRequestDTO,
+  ): Promise<Order | undefined> {
     const ordersRepository = getCustomRepository(OrdersRepository);
     const updateResult = await ordersRepository.update(
       {

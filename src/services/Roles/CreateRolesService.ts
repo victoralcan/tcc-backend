@@ -4,8 +4,7 @@ import Roles from '../../models/Role';
 
 interface IRequestDTO {
   name: string;
-
-  
+  active: boolean;
 }
 
 class CreateRolesService {
@@ -13,7 +12,6 @@ class CreateRolesService {
     const rolesRepository = getCustomRepository(RolesRepository);
 
     try {
-        
       const newrole = rolesRepository.create(roles);
       await rolesRepository.save(newrole);
       return newrole;

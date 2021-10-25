@@ -5,17 +5,16 @@ import Categories from '../../models/Category';
 interface IRequestDTO {
   name: string;
   description: string;
-
-
-  
+  active: boolean;
 }
 
 class CreateCategoriesService {
-  public async execute(categories: IRequestDTO): Promise<Categories | undefined> {
+  public async execute(
+    categories: IRequestDTO,
+  ): Promise<Categories | undefined> {
     const categoriesRepository = getCustomRepository(CategoriesRepository);
 
     try {
-        
       const newcategories = categoriesRepository.create(categories);
       await categoriesRepository.save(newcategories);
       return newcategories;

@@ -7,8 +7,8 @@ interface IRequestDTO {
   user_id: string;
   start_date: string;
   ready: boolean;
-  //order_date: string; //ENTENDER OQUE TA ROLANDO AQUI, PQ QUANDO TIRA O COMENTARIO DA BOSTA 
-  
+  order_date: string;
+  active: boolean;
 }
 
 class CreateOrdersService {
@@ -16,7 +16,6 @@ class CreateOrdersService {
     const ordersRepository = getCustomRepository(OrdersRepository);
 
     try {
-        
       const newOrder = ordersRepository.create(order);
       await ordersRepository.save(newOrder);
       return newOrder;

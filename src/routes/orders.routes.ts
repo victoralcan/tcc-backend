@@ -8,9 +8,9 @@ import CreateOrdersService from '../services/Orders/CreateOrdersService';
 import DeleteOrdersService from '../services/Orders/DeleteOrdersService';
 import UpdateOrdersService from '../services/Orders/UpdateOrdersService';
 
-const orderItemRouter = Router();
+const orderRouter = Router();
 
-orderItemRouter.get('/', async (request, response) => {
+orderRouter.get('/', async (request, response) => {
   const ordersRepository = getCustomRepository(OrdersRepository);
   const orders = await ordersRepository.find({
     where: {
@@ -21,7 +21,7 @@ orderItemRouter.get('/', async (request, response) => {
   return response.json(orders);
 });
 
-orderItemRouter.get('/:id', async (request, response) => {
+orderRouter.get('/:id', async (request, response) => {
   const { id } = request.params;
   if (!validate(id)) {
     return response.status(400).json({ error: 'Invalid Id' });
@@ -37,12 +37,19 @@ orderItemRouter.get('/:id', async (request, response) => {
   return response.json(order);
 });
 
-orderItemRouter.post('/', async (request, response) => {
+orderRouter.post('/', async (request, response) => {
   if (!(await cadastroSchema.isValid(request.body))) {
     return response.status(400).json({ error: 'Validation fails' });
   }
 
-  const { bill_id, user_id, start_date, ready, order_date } = request.body;
+  const {
+    bill_id,
+    user_id,
+    start_date,
+    ready,
+    order_date,
+    active,
+  } = request.body;
 
   const createOrder = new CreateOrdersService();
 
@@ -54,7 +61,8 @@ orderItemRouter.post('/', async (request, response) => {
       user_id,
       start_date,
       ready,
-      // order_date,
+      order_date,
+      active,
     });
   } catch (e) {
     console.log(e);
@@ -69,7 +77,7 @@ orderItemRouter.post('/', async (request, response) => {
   return response.json(newOrder);
 });
 
-orderItemRouter.put('/', async (request, response) => {
+orderRouter.put('/', async (request, response) => {
   if (!(await updateSchema.isValid(request.body))) {
     return response.status(400).json({ error: 'Validation fails' });
   }
@@ -80,7 +88,8 @@ orderItemRouter.put('/', async (request, response) => {
     user_id,
     start_date,
     ready,
-    // order_date,
+    order_date,
+    active,
   } = request.body;
 
   const orderToUpdate = {
@@ -89,7 +98,8 @@ orderItemRouter.put('/', async (request, response) => {
     user_id,
     start_date,
     ready,
-    // order_date,
+    order_date,
+    active,
   };
 
   if (!validate(id)) {
@@ -108,7 +118,7 @@ orderItemRouter.put('/', async (request, response) => {
   return response.json(updatedOrder);
 });
 
-orderItemRouter.delete('/:id', async (request, response) => {
+orderRouter.delete('/:id', async (request, response) => {
   const { id } = request.params;
   if (!validate(id)) {
     return response.status(400).json({ error: 'Invalid Id' });
@@ -119,4 +129,4 @@ orderItemRouter.delete('/:id', async (request, response) => {
   return response.status(204).send();
 });
 
-export default orderItemRouter;
+export default orderRouter;

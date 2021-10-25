@@ -5,7 +5,6 @@ export const cadastroSchema = Yup.object().shape({
   description: Yup.string().required(),
   sub_category_id: Yup.string().required(),
   value: Yup.number().required(),
-
 });
 
 export const updateSchema = Yup.object().shape({

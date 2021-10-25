@@ -23,8 +23,8 @@ class Order {
   @Column('boolean')
   ready: boolean;
 
-  @Column('boolean')
-  order_date: boolean;
+  @Column('date')
+  order_date: Date;
 
   @ManyToOne(() => User, { eager: true })
   user: User;

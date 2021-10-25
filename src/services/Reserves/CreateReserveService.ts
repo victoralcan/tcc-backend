@@ -8,7 +8,7 @@ interface IRequestDTO {
   name: string;
   contact: string;
   amount: number;
-
+  active: boolean;
 }
 
 class CreateReserveService {

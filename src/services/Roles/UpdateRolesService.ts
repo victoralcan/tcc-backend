@@ -5,9 +5,7 @@ import Roles from '../../models/Role';
 interface IRequestDTO {
   id: string;
   name: string;
-
-
-
+  active: boolean;
 }
 
 class UpdateRolesService {

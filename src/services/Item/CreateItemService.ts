@@ -7,16 +7,15 @@ interface IRequestDTO {
   description: string;
   sub_category_id: string;
   value: number;
-
+  active: boolean;
 }
 
 class CreateItemService {
-  public async execute(Item: IRequestDTO): Promise<Item | undefined> {
+  public async execute(item: IRequestDTO): Promise<Item | undefined> {
     const itemRepository = getCustomRepository(ItemsRepository);
 
     try {
-        
-      const newItem = itemRepository.create(Item);
+      const newItem = itemRepository.create(item);
       await itemRepository.save(newItem);
       return newItem;
     } catch (e) {

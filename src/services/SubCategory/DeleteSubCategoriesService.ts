@@ -7,7 +7,9 @@ interface IRequestDTO {
 
 class DeleteSubCategoriesService {
   public async execute({ id }: IRequestDTO): Promise<void> {
-    const subCategoriesRepository = getCustomRepository(SubCategoriesRepository);
+    const subCategoriesRepository = getCustomRepository(
+      SubCategoriesRepository,
+    );
     await subCategoriesRepository.update(
       {
         id,
