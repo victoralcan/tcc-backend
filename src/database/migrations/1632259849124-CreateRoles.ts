@@ -22,6 +22,7 @@ export default class CreateRoles1632259849124 implements MigrationInterface {
             name: 'active',
             type: 'boolean',
             isNullable: false,
+            default: true,
           },
           {
             name: 'created_at',

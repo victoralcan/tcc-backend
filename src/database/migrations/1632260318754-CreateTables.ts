@@ -27,6 +27,7 @@ export default class CreateTables1632260318754 implements MigrationInterface {
             name: 'active',
             type: 'boolean',
             isNullable: false,
+            default: true,
           },
           {
             name: 'created_at',

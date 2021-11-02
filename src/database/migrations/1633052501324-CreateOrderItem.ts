@@ -38,6 +38,7 @@ export default class CreateOrderItem1633052501324
             name: 'active',
             type: 'boolean',
             isNullable: false,
+            default: true,
           },
           {
             name: 'created_at',

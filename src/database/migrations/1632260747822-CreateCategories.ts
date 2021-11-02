@@ -28,6 +28,7 @@ export default class CreateCategories1632260747822
             name: 'active',
             type: 'boolean',
             isNullable: false,
+            default: true,
           },
           {
             name: 'created_at',

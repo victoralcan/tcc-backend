@@ -1,4 +1,5 @@
-import dotenv from 'dotenv';
+/* eslint-disable */
+require('dotenv').config();
 import 'reflect-metadata';
 
 import express from 'express';
@@ -7,8 +8,6 @@ import cors from 'cors';
 import routes from './routes';
 
 import './database';
-
-dotenv.config();
 
 const app = express();
 

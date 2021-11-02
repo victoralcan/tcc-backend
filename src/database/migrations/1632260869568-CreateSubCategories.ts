@@ -38,6 +38,7 @@ export default class CreateSubCategories1632260869568
             name: 'active',
             type: 'boolean',
             isNullable: false,
+            default: true,
           },
           {
             name: 'created_at',

@@ -1,3 +1,5 @@
 import { createConnection } from 'typeorm';
 
-createConnection();
+createConnection()
+  .then(() => console.log('Connected to Database'))
+  .catch(() => console.log('Error Connecting to Database'));

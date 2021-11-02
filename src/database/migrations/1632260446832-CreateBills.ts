@@ -40,6 +40,7 @@ export default class CreateBills1632260446832 implements MigrationInterface {
             name: 'active',
             type: 'boolean',
             isNullable: false,
+            default: true,
           },
           {
             name: 'created_at',

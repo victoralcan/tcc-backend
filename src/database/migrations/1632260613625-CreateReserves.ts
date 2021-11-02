@@ -47,6 +47,7 @@ export default class CreateReserves1632260613625 implements MigrationInterface {
             name: 'active',
             type: 'boolean',
             isNullable: false,
+            default: true,
           },
           {
             name: 'created_at',

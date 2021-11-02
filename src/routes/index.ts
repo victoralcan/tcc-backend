@@ -17,6 +17,8 @@ const routes = Router();
 
 routes.post('/session', CreateSession);
 
+routes.use('/items', itemRouter);
+
 routes.use(authMiddleware);
 
 routes.get('/session', GetSession);
@@ -30,8 +32,6 @@ routes.use('/bills', billsRouter);
 routes.use('/orders', ordersRouter);
 
 routes.use('/orderitem', orderItemRouter);
-
-routes.use('/items', itemRouter);
 
 routes.use('/subcategories', subCategoriesRoutes);
 

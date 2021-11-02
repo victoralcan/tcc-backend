@@ -1,4 +1,5 @@
 import { getCustomRepository } from 'typeorm';
+import { hash, genSalt } from 'bcryptjs';
 import UsersRepository from '../../repositories/UsersRepository';
 import User from '../../models/User';
 
@@ -13,6 +14,10 @@ interface IRequestDTO {
 class CreateUserService {
   public async execute(user: IRequestDTO): Promise<User | undefined> {
     const usersRepository = getCustomRepository(UsersRepository);
+
+    const salt = await genSalt(10);
+
+    user.password = await hash(user.password, salt);
 
     try {
       const newUser = usersRepository.create(user);

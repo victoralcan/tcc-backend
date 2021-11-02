@@ -36,6 +36,8 @@ export const CreateSession = async (req, res): Promise<void> => {
     return res.status(401).json({ error: 'Password does not match' });
   }
 
+  console.log(authConfig.secret);
+
   return res.json({
     token: jwt.sign({ id: existUser.id }, authConfig.secret || '', {
       expiresIn: authConfig.expiresIn,

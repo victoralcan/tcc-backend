@@ -7,6 +7,7 @@ import ItemRepository from '../repositories/ItemsRepository';
 import CreateItemService from '../services/Item/CreateItemService';
 import DeleteItemService from '../services/Item/DeleteItemService';
 import UpdateItemService from '../services/Item/UpdateItemService';
+import authMiddleware from '../middlewares/auth';
 
 const ItemRouter = Router();
 
@@ -21,7 +22,7 @@ ItemRouter.get('/', async (request, response) => {
   return response.json(item);
 });
 
-ItemRouter.get('/:id', async (request, response) => {
+ItemRouter.get('/:id', authMiddleware, async (request, response) => {
   const { id } = request.params;
   if (!validate(id)) {
     return response.status(400).json({ error: 'Invalid Id' });
@@ -37,7 +38,7 @@ ItemRouter.get('/:id', async (request, response) => {
   return response.json(item);
 });
 
-ItemRouter.post('/', async (request, response) => {
+ItemRouter.post('/', authMiddleware, async (request, response) => {
   if (!(await cadastroSchema.isValid(request.body))) {
     return response.status(400).json({ error: 'Validation fails' });
   }
@@ -69,7 +70,7 @@ ItemRouter.post('/', async (request, response) => {
   return response.json(newItem);
 });
 
-ItemRouter.put('/', async (request, response) => {
+ItemRouter.put('/', authMiddleware, async (request, response) => {
   if (!(await updateSchema.isValid(request.body))) {
     return response.status(400).json({ error: 'Validation fails' });
   }
@@ -108,7 +109,7 @@ ItemRouter.put('/', async (request, response) => {
   return response.json(updatedItem);
 });
 
-ItemRouter.delete('/:id', async (request, response) => {
+ItemRouter.delete('/:id', authMiddleware, async (request, response) => {
   const { id } = request.params;
   if (!validate(id)) {
     return response.status(400).json({ error: 'Invalid Id' });
