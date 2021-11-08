@@ -3,12 +3,16 @@ import { v4 as uuidV4 } from 'uuid';
 import { createConnection } from 'typeorm';
 import createRoles from './Roles';
 import createUsers from './Users';
+import createTables from './Tables';
 
 const adminRoleId = uuidV4();
 const waiterRoleId = uuidV4();
 
 const waiterId = uuidV4();
 const adminId = uuidV4();
+
+const table1Id = uuidV4();
+const table2Id = uuidV4();
 
 async function execute() {
   try {
@@ -49,6 +53,7 @@ async function execute() {
     await connection.close();
     await createRoles(adminRoleId, waiterRoleId);
     await createUsers(adminId, waiterId, adminRoleId, waiterRoleId);
+    await createTables(table1Id, table2Id);
   } catch (e) {
     console.log(e);
     throw new Error();
