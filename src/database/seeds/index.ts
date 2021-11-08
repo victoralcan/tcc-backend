@@ -4,6 +4,10 @@ import { createConnection } from 'typeorm';
 import createRoles from './Roles';
 import createUsers from './Users';
 import createTables from './Tables';
+import createReserves from './Reserves';
+import createCategories from './Categories';
+import createSubCategories from './SubCategories';
+import createItems from './Items';
 
 const adminRoleId = uuidV4();
 const waiterRoleId = uuidV4();
@@ -13,6 +17,18 @@ const adminId = uuidV4();
 
 const table1Id = uuidV4();
 const table2Id = uuidV4();
+
+const reserveId = uuidV4();
+const reserveId2 = uuidV4();
+
+const categorie1Id = uuidV4();
+const categorie2Id = uuidV4();
+
+const subCategorie1Id = uuidV4();
+const subCategorie2Id = uuidV4();
+
+const item1Id = uuidV4();
+const item2Id = uuidV4();
 
 async function execute() {
   try {
@@ -54,6 +70,11 @@ async function execute() {
     await createRoles(adminRoleId, waiterRoleId);
     await createUsers(adminId, waiterId, adminRoleId, waiterRoleId);
     await createTables(table1Id, table2Id);
+    await createReserves(reserveId, reserveId2, table1Id);
+    await createCategories(categorie1Id, categorie2Id);
+    await createSubCategories(subCategorie1Id, subCategorie2Id, categorie1Id);
+    await createItems(item1Id, item2Id, subCategorie1Id);
+
   } catch (e) {
     console.log(e);
     throw new Error();
