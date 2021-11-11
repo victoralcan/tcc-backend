@@ -4,6 +4,7 @@ export const cadastroSchema = Yup.object().shape({
   number: Yup.number().required(),
   busy: Yup.boolean().required(),
   seats: Yup.number().required(),
+  active: Yup.boolean().required(),
 });
 
 export const updateSchema = Yup.object().shape({
@@ -11,4 +12,5 @@ export const updateSchema = Yup.object().shape({
   number: Yup.number().required(),
   busy: Yup.boolean().required(),
   seats: Yup.number().required(),
+  active: Yup.boolean().required(),
 });

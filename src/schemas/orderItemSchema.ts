@@ -5,6 +5,7 @@ export const cadastroSchema = Yup.object().shape({
   item_id: Yup.string().required(),
   quantity: Yup.number().integer().required(),
   description: Yup.string().required(),
+  active: Yup.boolean().required(),
 });
 
 export const updateSchema = Yup.object().shape({
@@ -13,4 +14,5 @@ export const updateSchema = Yup.object().shape({
   item_id: Yup.string().required(),
   quantity: Yup.number().integer().required(),
   description: Yup.string().required(),
+  active: Yup.boolean().required(),
 });
