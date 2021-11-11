@@ -2,9 +2,11 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import Item from './Item';
 
 @Entity('order_item')
 class OrderItem {
@@ -16,6 +18,9 @@ class OrderItem {
 
   @Column()
   item_id: string;
+
+  @ManyToOne(() => Item, { eager: true })
+  item: Item;
 
   @Column()
   description: string;
