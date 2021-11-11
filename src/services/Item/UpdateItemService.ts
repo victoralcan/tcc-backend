@@ -8,6 +8,7 @@ interface IRequestDTO {
   description: string;
   sub_category_id: string;
   value: number;
+  image_url: string;
   active: boolean;
 }
 

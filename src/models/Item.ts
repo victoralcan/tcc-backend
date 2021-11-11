@@ -28,6 +28,9 @@ class Item {
   @ManyToOne(() => SubCategory, { eager: true })
   sub_category: SubCategory;
 
+  @Column()
+  image_url: string;
+
   @Column('boolean')
   active: boolean;
 

@@ -43,7 +43,14 @@ ItemRouter.post('/', authMiddleware, async (request, response) => {
     return response.status(400).json({ error: 'Validation fails' });
   }
 
-  const { name, description, sub_category_id, value, active } = request.body;
+  const {
+    name,
+    description,
+    sub_category_id,
+    value,
+    image_url,
+    active,
+  } = request.body;
 
   const createItem = new CreateItemService();
 
@@ -55,6 +62,7 @@ ItemRouter.post('/', authMiddleware, async (request, response) => {
       description,
       sub_category_id,
       value,
+      image_url,
       active,
     });
   } catch (e) {
@@ -81,6 +89,7 @@ ItemRouter.put('/', authMiddleware, async (request, response) => {
     description,
     sub_category_id,
     value,
+    image_url,
     active,
   } = request.body;
 
@@ -90,6 +99,7 @@ ItemRouter.put('/', authMiddleware, async (request, response) => {
     description,
     sub_category_id,
     value,
+    image_url,
     active,
   };
 

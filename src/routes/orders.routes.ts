@@ -42,14 +42,7 @@ orderRouter.post('/', async (request, response) => {
     return response.status(400).json({ error: 'Validation fails' });
   }
 
-  const {
-    bill_id,
-    user_id,
-    start_date,
-    ready,
-    order_date,
-    active,
-  } = request.body;
+  const { bill_id, user_id, ready, order_date, items, active } = request.body;
 
   const createOrder = new CreateOrdersService();
 
@@ -59,9 +52,9 @@ orderRouter.post('/', async (request, response) => {
     newOrder = await createOrder.execute({
       bill_id,
       user_id,
-      start_date,
       ready,
       order_date,
+      items,
       active,
     });
   } catch (e) {

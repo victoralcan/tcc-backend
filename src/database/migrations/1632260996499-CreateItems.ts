@@ -39,6 +39,11 @@ export default class CreateItems1632260996499 implements MigrationInterface {
             isNullable: false,
           },
           {
+            name: 'image_url',
+            type: 'string',
+            isNullable: false,
+          },
+          {
             name: 'active',
             type: 'boolean',
             isNullable: false,

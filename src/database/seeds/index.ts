@@ -30,6 +30,8 @@ const subCategorie2Id = uuidV4();
 
 const item1Id = uuidV4();
 const item2Id = uuidV4();
+const item3Id = uuidV4();
+const item4Id = uuidV4();
 
 async function execute() {
   try {
@@ -74,7 +76,7 @@ async function execute() {
     await createReserves(reserveId, reserveId2, table1Id);
     await createCategories(categorie1Id, categorie2Id);
     await createSubCategories(subCategorie1Id, subCategorie2Id, categorie1Id);
-    await createItems(item1Id, item2Id, subCategorie1Id);
+    await createItems(item1Id, item2Id, item3Id, item4Id, subCategorie1Id);
   } catch (e) {
     console.log(e);
     throw new Error();
