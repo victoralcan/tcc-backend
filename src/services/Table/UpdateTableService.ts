@@ -6,6 +6,7 @@ interface IRequestDTO {
   id: string;
   number: number;
   busy: boolean;
+  seats: number;
   active: boolean;
 }
 

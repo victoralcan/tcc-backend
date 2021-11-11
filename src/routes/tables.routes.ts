@@ -42,7 +42,7 @@ tablesRouter.post('/', async (request, response) => {
     return response.status(400).json({ error: 'Validation fails' });
   }
 
-  const { number, busy, active } = request.body;
+  const { number, busy, seats, active } = request.body;
 
   const createTable = new CreateTableService();
 
@@ -52,6 +52,7 @@ tablesRouter.post('/', async (request, response) => {
     newTable = await createTable.execute({
       number,
       busy,
+      seats,
       active,
     });
   } catch (e) {
@@ -72,12 +73,13 @@ tablesRouter.put('/', async (request, response) => {
     return response.status(400).json({ error: 'Validation fails' });
   }
 
-  const { id, number, busy, active } = request.body;
+  const { id, number, busy, seats, active } = request.body;
 
   const tableToUpdate = {
     id,
     number,
     busy,
+    seats,
     active,
   };
 

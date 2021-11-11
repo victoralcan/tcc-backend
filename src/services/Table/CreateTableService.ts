@@ -5,15 +5,16 @@ import Table from '../../models/Table';
 interface IRequestDTO {
   number: number;
   busy: boolean;
+  seats: number;
   active: boolean;
 }
 
 class CreateTableService {
-  public async execute(user: IRequestDTO): Promise<Table | undefined> {
+  public async execute(table: IRequestDTO): Promise<Table | undefined> {
     const tablesRepository = getCustomRepository(TablesRepository);
 
     try {
-      const newTable = tablesRepository.create(user);
+      const newTable = tablesRepository.create(table);
       await tablesRepository.save(newTable);
       return newTable;
     } catch (e) {

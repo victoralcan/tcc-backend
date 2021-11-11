@@ -19,6 +19,9 @@ class Table {
   @Column('boolean')
   busy: boolean;
 
+  @Column('integer')
+  seats: number;
+
   @OneToMany(() => Bill, bill => bill.table)
   bills: Bill[];
 
