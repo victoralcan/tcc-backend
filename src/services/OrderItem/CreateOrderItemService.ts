@@ -6,6 +6,7 @@ interface IRequestDTO {
   order_id: string;
   item_id: string;
   quantity: number;
+  description: string;
   active: boolean;
 }
 

@@ -17,6 +17,9 @@ class OrderItem {
   @Column()
   item_id: string;
 
+  @Column()
+  description: string;
+
   @Column('integer')
   quantity: number;
 

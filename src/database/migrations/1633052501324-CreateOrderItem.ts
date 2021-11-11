@@ -35,6 +35,11 @@ export default class CreateOrderItem1633052501324
             isNullable: false,
           },
           {
+            name: 'description',
+            type: 'varchar',
+            isNullable: false,
+          },
+          {
             name: 'active',
             type: 'boolean',
             isNullable: false,

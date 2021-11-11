@@ -42,7 +42,7 @@ orderItemRouter.post('/', async (request, response) => {
     return response.status(400).json({ error: 'Validation fails' });
   }
 
-  const { order_id, item_id, quantity, active } = request.body;
+  const { order_id, item_id, quantity, description, active } = request.body;
 
   const createOrderItem = new CreateOrderItemService();
 
@@ -53,6 +53,7 @@ orderItemRouter.post('/', async (request, response) => {
       order_id,
       item_id,
       quantity,
+      description,
       active,
     });
   } catch (e) {
@@ -73,13 +74,14 @@ orderItemRouter.put('/', async (request, response) => {
     return response.status(400).json({ error: 'Validation fails' });
   }
 
-  const { id, order_id, item_id, quantity, active } = request.body;
+  const { id, order_id, item_id, quantity, description, active } = request.body;
 
   const orderItemToUpdate = {
     id,
     order_id,
     item_id,
     quantity,
+    description,
     active,
   };
 
