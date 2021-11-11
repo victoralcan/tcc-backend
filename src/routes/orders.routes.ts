@@ -21,6 +21,18 @@ orderRouter.get('/', async (request, response) => {
   return response.json(orders);
 });
 
+orderRouter.get('/notReady', async (request, response) => {
+  const ordersRepository = getCustomRepository(OrdersRepository);
+  const orders = await ordersRepository.find({
+    where: {
+      ready: false,
+      active: true,
+    },
+  });
+
+  return response.json(orders);
+});
+
 orderRouter.get('/:id', async (request, response) => {
   const { id } = request.params;
   if (!validate(id)) {
