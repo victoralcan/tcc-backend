@@ -40,7 +40,7 @@ export default class CreateItems1632260996499 implements MigrationInterface {
           },
           {
             name: 'image_url',
-            type: 'string',
+            type: 'varchar',
             isNullable: false,
           },
           {

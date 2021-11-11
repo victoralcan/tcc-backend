@@ -21,12 +21,12 @@ export default async function create(
 
   await connection.query(`
       INSERT INTO ITEMS(id, name, description, sub_category_id, value, image_url)
-      values ('${item2Id}','Batata frita com bacon', 'Batata frita com bacon', '${subCategorieId}', 25.80, 'http://www.sitiovojoao.com.br/wp-content/uploads/2020/11/ketchup-752x440_Easy-Resize.com_.jpg');
+      values ('${item3Id}','Batata frita com bacon', 'Batata frita com bacon', '${subCategorieId}', 25.80, 'http://www.sitiovojoao.com.br/wp-content/uploads/2020/11/ketchup-752x440_Easy-Resize.com_.jpg');
   `);
 
   await connection.query(`
       INSERT INTO ITEMS(id, name, description, sub_category_id, value, image_url)
-      values ('${item2Id}','Batata frita com parmesao', 'Batata frita com parmesao', '${subCategorieId}', 25.80, 'http://www.sitiovojoao.com.br/wp-content/uploads/2020/11/ketchup-752x440_Easy-Resize.com_.jpg');
+      values ('${item4Id}','Batata frita com parmesao', 'Batata frita com parmesao', '${subCategorieId}', 25.80, 'http://www.sitiovojoao.com.br/wp-content/uploads/2020/11/ketchup-752x440_Easy-Resize.com_.jpg');
   `);
 
   await connection.close();
