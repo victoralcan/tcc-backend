@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { getCustomRepository } from 'typeorm';
 import { validate } from 'uuid';
+import * as Yup from 'yup';
 import { cadastroSchema, updateSchema } from '../schemas/billSchema';
 
 import BillsRepository from '../repositories/BillsRepository';
@@ -8,6 +9,7 @@ import CreateBillService from '../services/Bill/CreateBillService';
 import DeleteBillService from '../services/Bill/DeleteBillService';
 import UpdateBillService from '../services/Bill/UpdateBillService';
 import SearchBillByTableIdService from '../services/Bill/SearchBillByTableIdService';
+import CloseBillService from '../services/Bill/CloseBillService';
 
 const billsRouter = Router();
 
@@ -85,6 +87,29 @@ billsRouter.post('/', async (request, response) => {
       .json({ error: 'An error ocurred. Please try again!' });
   }
   return response.json(newBill);
+});
+
+billsRouter.post('/closeBill', async (request, response) => {
+  const closeBillSchema = Yup.object().shape({
+    bill_id: Yup.string().required(),
+  });
+  if (!(await closeBillSchema.isValid(request.body))) {
+    return response.status(400).json({ error: 'Validation fails' });
+  }
+
+  const { bill_id } = request.body;
+
+  const closeBillService = new CloseBillService();
+
+  try {
+    await closeBillService.execute({ id: bill_id });
+    return response.json({ message: 'Bill Closed' });
+  } catch (e) {
+    console.log(e);
+    return response
+      .status(500)
+      .json({ error: 'An error ocurred. Please try again!' });
+  }
 });
 
 billsRouter.put('/', async (request, response) => {
