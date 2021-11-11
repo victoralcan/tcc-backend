@@ -21,6 +21,19 @@ orderItemRouter.get('/', async (request, response) => {
   return response.json(orderItem);
 });
 
+orderItemRouter.get('/byOrder/:order_id', async (request, response) => {
+  const { order_id } = request.params;
+  const orderItemRepository = getCustomRepository(OrderItemRepository);
+  const orderItem = await orderItemRepository.find({
+    where: {
+      order_id,
+      active: true,
+    },
+  });
+
+  return response.json(orderItem);
+});
+
 orderItemRouter.get('/:id', async (request, response) => {
   const { id } = request.params;
   if (!validate(id)) {
