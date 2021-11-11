@@ -8,4 +8,4 @@ async function generatePassword(password: string) {
   console.log(passwordHash);
 }
 
-generatePassword('waiter');
+generatePassword('kitchen');

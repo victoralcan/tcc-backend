@@ -9,7 +9,8 @@
     "start": "node dist/server.js",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
     "setup": "yarn typeorm migration:run && yarn seed:run",
-    "seed:run": "ts-node-dev ./src/database/seeds"
+    "seed:run": "ts-node-dev ./src/database/seeds",
+    "generatePassword": "ts-node-dev ./src/generatePassword.ts"
   },
   "dependencies": {
     "axios": "^0.21.1",

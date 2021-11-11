@@ -3,6 +3,7 @@ import { createConnection } from 'typeorm';
 export default async function create(
   adminId: string,
   waiterId: string,
+  kitchenId: string,
 ): Promise<void> {
   const connection = await createConnection();
 
@@ -12,6 +13,10 @@ export default async function create(
 
   await connection.query(`
   INSERT INTO ROLES(id, name) values ('${waiterId}', 'ROLE_WAITER');
+  `);
+
+  await connection.query(`
+  INSERT INTO ROLES(id, name) values ('${kitchenId}', 'ROLE_KITCHEN');
   `);
 
   await connection.close();

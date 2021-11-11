@@ -11,9 +11,11 @@ import createItems from './Items';
 
 const adminRoleId = uuidV4();
 const waiterRoleId = uuidV4();
+const kitchenRoleId = uuidV4();
 
 const waiterId = uuidV4();
 const adminId = uuidV4();
+const kitchenId = uuidV4();
 
 const table1Id = uuidV4();
 const table2Id = uuidV4();
@@ -70,8 +72,15 @@ async function execute() {
     );
     console.log('Configuration to UUID MIN');
     await connection.close();
-    await createRoles(adminRoleId, waiterRoleId);
-    await createUsers(adminId, waiterId, adminRoleId, waiterRoleId);
+    await createRoles(adminRoleId, waiterRoleId, kitchenRoleId);
+    await createUsers(
+      adminId,
+      waiterId,
+      kitchenId,
+      adminRoleId,
+      waiterRoleId,
+      kitchenRoleId,
+    );
     await createTables(table1Id, table2Id, table3Id);
     await createReserves(reserveId, reserveId2, table1Id);
     await createCategories(categorie1Id, categorie2Id);
