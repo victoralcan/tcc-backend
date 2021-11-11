@@ -7,6 +7,7 @@ import BillsRepository from '../repositories/BillsRepository';
 import CreateBillService from '../services/Bill/CreateBillService';
 import DeleteBillService from '../services/Bill/DeleteBillService';
 import UpdateBillService from '../services/Bill/UpdateBillService';
+import SearchBillByTableIdService from '../services/Bill/SearchBillByTableIdService';
 
 const billsRouter = Router();
 
@@ -33,6 +34,23 @@ billsRouter.get('/:id', async (request, response) => {
 
   if (!bill) {
     return response.status(404).json({ error: 'Bill does not exists' });
+  }
+  return response.json(bill);
+});
+
+billsRouter.get('/search/:table_id', async (request, response) => {
+  const { table_id } = request.params;
+  if (!validate(table_id)) {
+    return response.status(400).json({ error: 'Invalid Id' });
+  }
+  const searchBillByTableId = new SearchBillByTableIdService();
+
+  const bill = await searchBillByTableId.execute({ table_id });
+
+  if (!bill) {
+    return response
+      .status(404)
+      .json({ error: 'Bill for given table does not exist' });
   }
   return response.json(bill);
 });
