@@ -5,7 +5,6 @@ export const cadastroSchema = Yup.object().shape({
   password: Yup.string().required(),
   lastname: Yup.string().required(),
   role_id: Yup.string().required(),
-  active: Yup.boolean().required(),
 });
 
 export const updateSchema = Yup.object().shape({
@@ -14,5 +13,4 @@ export const updateSchema = Yup.object().shape({
   password: Yup.string().required(),
   lastname: Yup.string().required(),
   role_id: Yup.string().required(),
-  active: Yup.boolean().required(),
 });
