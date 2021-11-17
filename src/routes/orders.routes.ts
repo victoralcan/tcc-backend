@@ -55,7 +55,7 @@ orderRouter.post('/', async (request, response) => {
     return response.status(400).json({ error: 'Validation fails' });
   }
 
-  const { table_id, user_id, ready, items, active } = request.body;
+  const { table_id, ready, items, active } = request.body;
 
   const createOrder = new CreateOrdersService();
   const searchBillByTableId = new SearchBillByTableIdService();
@@ -66,7 +66,8 @@ orderRouter.post('/', async (request, response) => {
     if (bill) {
       newOrder = await createOrder.execute({
         bill_id: bill?.table_id,
-        user_id,
+        // @ts-ignore
+        user_id: request.userId,
         ready,
         order_date: new Date().toISOString(),
         items,
@@ -91,20 +92,13 @@ orderRouter.put('/', async (request, response) => {
     return response.status(400).json({ error: 'Validation fails' });
   }
 
-  const {
-    id,
-    bill_id,
-    user_id,
-    start_date,
-    ready,
-    order_date,
-    active,
-  } = request.body;
+  const { id, bill_id, start_date, ready, order_date, active } = request.body;
 
   const orderToUpdate = {
     id,
     bill_id,
-    user_id,
+    // @ts-ignore
+    user_id: request.userId,
     start_date,
     ready,
     order_date,
