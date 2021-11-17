@@ -62,7 +62,7 @@ billsRouter.post('/', async (request, response) => {
     return response.status(400).json({ error: 'Validation fails' });
   }
 
-  const { table_id, start_date, end_date, total_value, active } = request.body;
+  const { table_id, end_date, total_value, active } = request.body;
 
   const createBill = new CreateBillService();
 
@@ -71,7 +71,7 @@ billsRouter.post('/', async (request, response) => {
   try {
     newBill = await createBill.execute({
       table_id,
-      start_date,
+      start_date: new Date().toISOString(),
       end_date,
       total_value,
       active,
