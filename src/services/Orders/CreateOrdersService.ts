@@ -40,17 +40,20 @@ class CreateOrdersService {
         user_id,
       });
       await ordersRepository.save(newOrder);
-      items.forEach(item => {
+      for (const item of items) {
         const { id, description, quantity } = item;
-        orderItemRepository.create({
+        const orderItem = orderItemRepository.create({
           item_id: id,
           order_id: newOrder.id,
           description,
           quantity,
+          active: true,
         });
-      });
+        await orderItemRepository.save(orderItem);
+      }
       return newOrder;
     } catch (e) {
+      console.log(e);
       return undefined;
     }
   }

@@ -11,10 +11,10 @@ class SearchBillByTableIdService {
     const billsRepository = getCustomRepository(BillsRepository);
 
     try {
-      const bill = billsRepository.findOne({
+      const bill = await billsRepository.findOne({
         where: {
           table_id,
-          end_date: undefined,
+          end_date: null,
         },
       });
       return bill;

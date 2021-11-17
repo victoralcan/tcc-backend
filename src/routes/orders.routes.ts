@@ -65,7 +65,7 @@ orderRouter.post('/', async (request, response) => {
     const bill = await searchBillByTableId.execute({ table_id });
     if (bill) {
       newOrder = await createOrder.execute({
-        bill_id: bill?.table_id,
+        bill_id: bill?.id,
         // @ts-ignore
         user_id: request.userId,
         ready,
