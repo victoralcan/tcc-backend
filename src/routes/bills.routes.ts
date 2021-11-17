@@ -17,6 +17,7 @@ billsRouter.get('/', async (request, response) => {
   const billsRepository = getCustomRepository(BillsRepository);
   const bills = await billsRepository.find({
     where: {
+      end_date: undefined,
       active: true,
     },
   });
