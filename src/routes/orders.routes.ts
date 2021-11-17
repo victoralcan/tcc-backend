@@ -7,6 +7,7 @@ import OrdersRepository from '../repositories/OrdersRepository';
 import CreateOrdersService from '../services/Orders/CreateOrdersService';
 import DeleteOrdersService from '../services/Orders/DeleteOrdersService';
 import UpdateOrdersService from '../services/Orders/UpdateOrdersService';
+import SearchBillByTableIdService from '../services/Bill/SearchBillByTableIdService';
 
 const orderRouter = Router();
 
@@ -54,21 +55,24 @@ orderRouter.post('/', async (request, response) => {
     return response.status(400).json({ error: 'Validation fails' });
   }
 
-  const { bill_id, user_id, ready, order_date, items, active } = request.body;
+  const { table_id, user_id, ready, items, active } = request.body;
 
   const createOrder = new CreateOrdersService();
-
+  const searchBillByTableId = new SearchBillByTableIdService();
   let newOrder;
 
   try {
-    newOrder = await createOrder.execute({
-      bill_id,
-      user_id,
-      ready,
-      order_date,
-      items,
-      active,
-    });
+    const bill = await searchBillByTableId.execute({ table_id });
+    if (bill) {
+      newOrder = await createOrder.execute({
+        bill_id: bill?.table_id,
+        user_id,
+        ready,
+        order_date: new Date().toISOString(),
+        items,
+        active,
+      });
+    }
   } catch (e) {
     console.log(e);
     throw new Error();
