@@ -16,12 +16,10 @@ export default class CreateRoles1632259849124 implements MigrationInterface {
           {
             name: 'name',
             type: 'varchar',
-            isNullable: false,
           },
           {
             name: 'active',
             type: 'boolean',
-            isNullable: false,
             default: true,
           },
           {

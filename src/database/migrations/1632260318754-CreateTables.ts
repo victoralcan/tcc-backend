@@ -16,22 +16,18 @@ export default class CreateTables1632260318754 implements MigrationInterface {
           {
             name: 'number',
             type: 'integer',
-            isNullable: false,
           },
           {
             name: 'busy',
             type: 'boolean',
-            isNullable: false,
           },
           {
             name: 'seats',
             type: 'integer',
-            isNullable: false,
           },
           {
             name: 'active',
             type: 'boolean',
-            isNullable: false,
             default: true,
           },
           {

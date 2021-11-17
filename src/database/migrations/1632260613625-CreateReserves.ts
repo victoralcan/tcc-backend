@@ -21,32 +21,26 @@ export default class CreateReserves1632260613625 implements MigrationInterface {
           {
             name: 'table_id',
             type: 'uuid',
-            isNullable: false,
           },
           {
             name: 'start_date',
             type: 'date',
-            isNullable: false,
           },
           {
             name: 'name',
             type: 'varchar',
-            isNullable: false,
           },
           {
             name: 'contact',
             type: 'varchar',
-            isNullable: false,
           },
           {
             name: 'amount',
             type: 'integer',
-            isNullable: false,
           },
           {
             name: 'active',
             type: 'boolean',
-            isNullable: false,
             default: true,
           },
           {

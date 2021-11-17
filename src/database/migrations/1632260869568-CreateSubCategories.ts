@@ -22,22 +22,18 @@ export default class CreateSubCategories1632260869568
           {
             name: 'name',
             type: 'varchar',
-            isNullable: false,
           },
           {
             name: 'description',
             type: 'varchar',
-            isNullable: false,
           },
           {
             name: 'category_id',
             type: 'uuid',
-            isNullable: false,
           },
           {
             name: 'active',
             type: 'boolean',
-            isNullable: false,
             default: true,
           },
           {

@@ -21,16 +21,15 @@ export default class CreateBills1632260446832 implements MigrationInterface {
           {
             name: 'table_id',
             type: 'uuid',
-            isNullable: false,
           },
           {
             name: 'start_date',
             type: 'date',
-            isNullable: false,
           },
           {
             name: 'end_date',
             type: 'date',
+            isNullable: true,
           },
           {
             name: 'total_value',
@@ -39,7 +38,6 @@ export default class CreateBills1632260446832 implements MigrationInterface {
           {
             name: 'active',
             type: 'boolean',
-            isNullable: false,
             default: true,
           },
           {

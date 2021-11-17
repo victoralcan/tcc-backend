@@ -17,17 +17,14 @@ export default class CreateCategories1632260747822
           {
             name: 'name',
             type: 'varchar',
-            isNullable: false,
           },
           {
             name: 'description',
             type: 'varchar',
-            isNullable: false,
           },
           {
             name: 'active',
             type: 'boolean',
-            isNullable: false,
             default: true,
           },
           {

@@ -21,32 +21,26 @@ export default class CreateItems1632260996499 implements MigrationInterface {
           {
             name: 'name',
             type: 'varchar',
-            isNullable: false,
           },
           {
             name: 'description',
             type: 'varchar',
-            isNullable: false,
           },
           {
             name: 'sub_category_id',
             type: 'uuid',
-            isNullable: false,
           },
           {
             name: 'value',
             type: 'decimal',
-            isNullable: false,
           },
           {
             name: 'image_url',
             type: 'varchar',
-            isNullable: false,
           },
           {
             name: 'active',
             type: 'boolean',
-            isNullable: false,
             default: true,
           },
           {

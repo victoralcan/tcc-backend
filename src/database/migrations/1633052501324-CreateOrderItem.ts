@@ -22,27 +22,22 @@ export default class CreateOrderItem1633052501324
           {
             name: 'order_id',
             type: 'uuid',
-            isNullable: false,
           },
           {
             name: 'item_id',
             type: 'uuid',
-            isNullable: false,
           },
           {
             name: 'quantity',
             type: 'integer',
-            isNullable: false,
           },
           {
             name: 'description',
             type: 'varchar',
-            isNullable: false,
           },
           {
             name: 'active',
             type: 'boolean',
-            isNullable: false,
             default: true,
           },
           {

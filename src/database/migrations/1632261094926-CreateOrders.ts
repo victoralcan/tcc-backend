@@ -21,27 +21,22 @@ export default class CreateOrders1632261094926 implements MigrationInterface {
           {
             name: 'bill_id',
             type: 'uuid',
-            isNullable: false,
           },
           {
             name: 'user_id',
             type: 'uuid',
-            isNullable: false,
           },
           {
             name: 'ready',
             type: 'boolean',
-            isNullable: false,
           },
           {
             name: 'order_date',
             type: 'date',
-            isNullable: false,
           },
           {
             name: 'active',
             type: 'boolean',
-            isNullable: false,
             default: true,
           },
           {
