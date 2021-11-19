@@ -12,6 +12,5 @@ export const updateSchema = Yup.object().shape({
   bill_id: Yup.string().required(),
   ready: Yup.boolean().required(),
   order_date: Yup.string().required(),
-  items: Yup.array().required(),
   active: Yup.boolean().required(),
 });

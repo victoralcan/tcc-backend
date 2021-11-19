@@ -92,14 +92,13 @@ orderRouter.put('/', async (request, response) => {
     return response.status(400).json({ error: 'Validation fails' });
   }
 
-  const { id, bill_id, start_date, ready, order_date, active } = request.body;
+  const { id, bill_id, ready, order_date, active } = request.body;
 
   const orderToUpdate = {
     id,
     bill_id,
     // @ts-ignore
     user_id: request.userId,
-    start_date,
     ready,
     order_date,
     active,
