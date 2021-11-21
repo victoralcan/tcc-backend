@@ -27,6 +27,7 @@ orderRouter.get('/notReady', async (request, response) => {
   const orders = await ordersRepository.find({
     where: {
       ready: false,
+      delivered: false,
       active: true,
     },
   });
@@ -55,7 +56,7 @@ orderRouter.post('/', async (request, response) => {
     return response.status(400).json({ error: 'Validation fails' });
   }
 
-  const { table_id, ready, items, active } = request.body;
+  const { table_id, ready, items, delivered, active } = request.body;
 
   const createOrder = new CreateOrdersService();
   const searchBillByTableId = new SearchBillByTableIdService();
@@ -70,6 +71,7 @@ orderRouter.post('/', async (request, response) => {
         user_id: request.userId,
         ready,
         order_date: new Date().toISOString(),
+        delivered,
         items,
         active,
       });
@@ -92,7 +94,7 @@ orderRouter.put('/', async (request, response) => {
     return response.status(400).json({ error: 'Validation fails' });
   }
 
-  const { id, bill_id, ready, order_date, active } = request.body;
+  const { id, bill_id, ready, order_date, delivered, active } = request.body;
 
   const orderToUpdate = {
     id,
@@ -101,6 +103,7 @@ orderRouter.put('/', async (request, response) => {
     user_id: request.userId,
     ready,
     order_date,
+    delivered,
     active,
   };
 

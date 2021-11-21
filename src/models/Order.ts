@@ -23,6 +23,9 @@ class Order {
   @Column('boolean')
   ready: boolean;
 
+  @Column('boolean')
+  delivered: boolean;
+
   @Column('date')
   order_date: Date;
 

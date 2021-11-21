@@ -7,6 +7,7 @@ interface IRequestDTO {
   bill_id: string;
   user_id: string;
   ready: boolean;
+  delivered: boolean;
   order_date: string;
   active: boolean;
 }

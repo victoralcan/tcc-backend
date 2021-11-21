@@ -31,6 +31,10 @@ export default class CreateOrders1632261094926 implements MigrationInterface {
             type: 'boolean',
           },
           {
+            name: 'delivered',
+            type: 'boolean',
+          },
+          {
             name: 'order_date',
             type: 'date',
           },

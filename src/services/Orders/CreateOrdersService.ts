@@ -14,6 +14,7 @@ interface IRequestDTO {
   bill_id: string;
   user_id: string;
   ready: boolean;
+  delivered: boolean;
   order_date: string;
   items: ItemReceived[];
   active: boolean;
@@ -25,6 +26,7 @@ class CreateOrdersService {
     bill_id,
     order_date,
     ready,
+    delivered,
     active,
     user_id,
   }: IRequestDTO): Promise<Order | undefined> {
@@ -36,6 +38,7 @@ class CreateOrdersService {
         bill_id,
         order_date,
         ready,
+        delivered,
         active,
         user_id,
       });
