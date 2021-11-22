@@ -7,6 +7,8 @@ import OrderItemRepository from '../repositories/OrderItemRepository';
 import CreateOrderItemService from '../services/OrderItem/CreateOrderItemService';
 import DeleteOrderItemService from '../services/OrderItem/DeleteOrderItemService';
 import UpdateOrderItemService from '../services/OrderItem/UpdateOrderItemService';
+import OrdersRepository from '../repositories/OrdersRepository';
+import OrderItem from '../models/OrderItem';
 
 const orderItemRouter = Router();
 
@@ -32,6 +34,39 @@ orderItemRouter.get('/byOrder/:order_id', async (request, response) => {
   });
 
   return response.json(orderItem);
+});
+
+orderItemRouter.get('/byBill/:bill_id', async (request, response) => {
+  const { bill_id } = request.params;
+  const orderItemRepository = getCustomRepository(OrderItemRepository);
+  const ordersRepository = getCustomRepository(OrdersRepository);
+
+  let allOrderItems = [] as OrderItem[];
+
+  try {
+    const orders = await ordersRepository.find({
+      where: {
+        bill_id,
+      },
+    });
+
+    for (const order of orders) {
+      const orderItem = await orderItemRepository.find({
+        where: {
+          order_id: order.id,
+          active: true,
+        },
+      });
+      allOrderItems = [...allOrderItems, ...orderItem];
+    }
+  } catch (e) {
+    console.log(e);
+    return response
+      .status(500)
+      .json({ error: 'An error ocurred. Please try again!' });
+  }
+
+  return response.json(allOrderItems);
 });
 
 orderItemRouter.get('/:id', async (request, response) => {
