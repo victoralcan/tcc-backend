@@ -32,7 +32,7 @@ export default class CreateItems1632260996499 implements MigrationInterface {
           },
           {
             name: 'value',
-            type: 'decimal',
+            type: 'numeric',
           },
           {
             name: 'image_url',

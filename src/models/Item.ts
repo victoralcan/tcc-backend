@@ -7,6 +7,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import SubCategory from './SubCategory';
+import ColumnNumericTransformer from '../config/ColumnNumericTransformer';
 
 @Entity('items')
 class Item {
@@ -22,7 +23,11 @@ class Item {
   @Column()
   sub_category_id: string;
 
-  @Column('decimal')
+  @Column('numeric', {
+    precision: 7,
+    scale: 2,
+    transformer: new ColumnNumericTransformer(),
+  })
   value: number;
 
   @ManyToOne(() => SubCategory, { eager: true })

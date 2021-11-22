@@ -7,6 +7,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import Table from './Table';
+import ColumnNumericTransformer from '../config/ColumnNumericTransformer';
 
 @Entity('bills')
 class Bill {
@@ -22,7 +23,11 @@ class Bill {
   @Column('date')
   end_date: Date;
 
-  @Column('decimal')
+  @Column('numeric', {
+    precision: 7,
+    scale: 2,
+    transformer: new ColumnNumericTransformer(),
+  })
   total_value: number;
 
   @ManyToOne(() => Table, { eager: true })

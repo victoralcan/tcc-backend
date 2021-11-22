@@ -33,7 +33,7 @@ export default class CreateBills1632260446832 implements MigrationInterface {
           },
           {
             name: 'total_value',
-            type: 'decimal',
+            type: 'numeric',
           },
           {
             name: 'active',
