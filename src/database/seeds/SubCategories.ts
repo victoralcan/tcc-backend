@@ -14,7 +14,7 @@ export default async function create(
 
   await connection.query(`
       INSERT INTO SUB_CATEGORIES(id, name, description, category_id)
-      values ('${subCategorie2Id}','Vegano', 'Alimento livre de comida', '${categorieId}');
+      values ('${subCategorie2Id}','Vegano', 'Alimento livre de carne', '${categorieId}');
   `);
 
   await connection.close();
