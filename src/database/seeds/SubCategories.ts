@@ -9,7 +9,7 @@ export default async function create(
 
   await connection.query(`
       INSERT INTO SUB_CATEGORIES(id, name, description, category_id)
-      values ('${subCategorie1Id}', 'Normal', 'Alimento pode conter carne, '${categorieId}');
+      values ('${subCategorie1Id}', 'Normal', 'Alimento pode conter carne', '${categorieId}');
   `);
 
   await connection.query(`

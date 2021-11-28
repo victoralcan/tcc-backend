@@ -42,7 +42,7 @@ reservesRouter.post('/', async (request, response) => {
     return response.status(400).json({ error: 'Validation fails' });
   }
 
-  const { table_id, start_date, name, contact, amount, active } = request.body;
+  const { start_date, name, contact, amount, active } = request.body;
 
   const createReserve = new CreateReserveService();
 
@@ -50,7 +50,6 @@ reservesRouter.post('/', async (request, response) => {
 
   try {
     newReserve = await createReserve.execute({
-      table_id,
       start_date,
       name,
       contact,
@@ -75,19 +74,10 @@ reservesRouter.put('/', async (request, response) => {
     return response.status(400).json({ error: 'Validation fails' });
   }
 
-  const {
-    id,
-    table_id,
-    start_date,
-    name,
-    contact,
-    amount,
-    active,
-  } = request.body;
+  const { id, start_date, name, contact, amount, active } = request.body;
 
   const reserveToUpdate = {
     id,
-    table_id,
     start_date,
     name,
     contact,

@@ -4,7 +4,6 @@ import Reserve from '../../models/Reserve';
 
 interface IRequestDTO {
   id: string;
-  table_id: string;
   start_date: string;
   name: string;
   contact: string;

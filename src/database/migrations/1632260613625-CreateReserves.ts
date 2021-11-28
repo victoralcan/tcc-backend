@@ -1,9 +1,4 @@
-import {
-  MigrationInterface,
-  QueryRunner,
-  Table,
-  TableForeignKey,
-} from 'typeorm';
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export default class CreateReserves1632260613625 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
@@ -19,12 +14,9 @@ export default class CreateReserves1632260613625 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'table_id',
-            type: 'uuid',
-          },
-          {
             name: 'start_date',
             type: 'date',
+            default: 'now()',
           },
           {
             name: 'name',
@@ -56,23 +48,9 @@ export default class CreateReserves1632260613625 implements MigrationInterface {
         ],
       }),
     );
-
-    await queryRunner.createForeignKey(
-      'reserves',
-      new TableForeignKey({
-        name: 'ReserveTable',
-        columnNames: ['table_id'],
-        referencedColumnNames: ['id'],
-        referencedTableName: 'tables',
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE',
-      }),
-    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('reserves', 'ReserveTable');
-
     await queryRunner.dropTable('reserves');
   }
 }

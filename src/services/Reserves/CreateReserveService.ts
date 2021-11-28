@@ -3,7 +3,6 @@ import ReservesRepository from '../../repositories/ReservesRepository';
 import Reserve from '../../models/Reserve';
 
 interface IRequestDTO {
-  table_id: string;
   start_date: string;
   name: string;
   contact: string;

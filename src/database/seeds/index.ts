@@ -82,7 +82,7 @@ async function execute() {
       kitchenRoleId,
     );
     await createTables(table1Id, table2Id, table3Id);
-    await createReserves(reserveId, reserveId2, table1Id);
+    await createReserves(reserveId, reserveId2);
     await createCategories(categorie1Id, categorie2Id);
     await createSubCategories(subCategorie1Id, subCategorie2Id, categorie1Id);
     await createItems(item1Id, item2Id, item3Id, item4Id, subCategorie1Id);
