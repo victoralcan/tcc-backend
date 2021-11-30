@@ -19,6 +19,8 @@ routes.post('/session', CreateSession);
 
 routes.use('/items', itemRouter);
 
+routes.use('/reserve', reservesRouter);
+
 routes.use(authMiddleware);
 
 routes.get('/session', GetSession);
@@ -36,8 +38,6 @@ routes.use('/orderitem', orderItemRouter);
 routes.use('/subcategories', subCategoriesRoutes);
 
 routes.use('/categories', categoriesRoutes);
-
-routes.use('/reserve', reservesRouter);
 
 routes.use('/roles', rolesRoutes);
 
