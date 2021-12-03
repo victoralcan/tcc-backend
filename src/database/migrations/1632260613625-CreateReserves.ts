@@ -15,7 +15,7 @@ export default class CreateReserves1632260613625 implements MigrationInterface {
           },
           {
             name: 'start_date',
-            type: 'date',
+            type: 'timestamptz',
             default: 'now()',
           },
           {

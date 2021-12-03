@@ -11,7 +11,7 @@ class Reserve {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column('date')
+  @Column('timestamptz')
   start_date: Date;
 
   @Column()
