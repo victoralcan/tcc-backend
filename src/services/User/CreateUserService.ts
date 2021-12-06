@@ -24,6 +24,7 @@ class CreateUserService {
       await usersRepository.save(newUser);
       return newUser;
     } catch (e) {
+      console.log(e);
       return undefined;
     }
   }
