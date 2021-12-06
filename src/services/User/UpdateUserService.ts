@@ -1,4 +1,5 @@
 import { getCustomRepository } from 'typeorm';
+import { genSalt, hash } from 'bcryptjs';
 import UsersRepository from '../../repositories/UsersRepository';
 import User from '../../models/User';
 
@@ -14,6 +15,11 @@ interface IRequestDTO {
 class UpdateUserService {
   public async execute(toUpdateUser: IRequestDTO): Promise<User | undefined> {
     const usersRepository = getCustomRepository(UsersRepository);
+
+    const salt = await genSalt(10);
+
+    toUpdateUser.password = await hash(toUpdateUser.password, salt);
+
     const updateResult = await usersRepository.update(
       {
         id: toUpdateUser.id,
